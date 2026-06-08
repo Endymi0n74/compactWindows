@@ -260,7 +260,7 @@
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="250" />
-                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="270" />
 
                             </Grid.ColumnDefinitions>
 
@@ -285,7 +285,7 @@
                             </StackPanel>
 
                             <CheckBox x:Name="UiLockHddToOneThread"
-                                      Grid.Row="2"
+                                      Grid.Row="2" Grid.ColumnSpan="2"
                                       Margin="-10 0"
                                       d:Content="HDDs only use 1 thread"
                                       Content="{local:Localize SetCompression_HDDThread}"

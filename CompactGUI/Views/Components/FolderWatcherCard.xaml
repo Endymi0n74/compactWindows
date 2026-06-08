@@ -248,10 +248,7 @@
                                        Margin="0 -2 0 0" HorizontalAlignment="Right" VerticalAlignment="Top"
                                        d:Text="7% decayed" FontSize="12" Foreground="#FFBFC7CE">
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0}% {1}">
-                                        <Binding Converter="{StaticResource DecimalToPercentageConverter}" Path="DecayPercentage" />
-                                        <Binding Source="{local:Localize Watcher_WatchedDecayed}" />
-                                    </MultiBinding>
+                                    <Binding Converter="{StaticResource DecimalToPercentageConverter}" ConverterParameter="D" Path="DecayPercentage" />
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock x:Name="SavedText"

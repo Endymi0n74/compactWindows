@@ -5,6 +5,11 @@ Public Class DecimalToPercentageConverter : Implements IValueConverter
         'IF = invert and format, to show the "percentage smaller" text
         If parameter = "IF" Then Return CInt(100 - (CType(value, Decimal) * 100)) & "%"
         If parameter = "I" Then Return CInt(100 - (CType(value, Decimal) * 100))
+        If parameter = "D" Then
+            Dim percentage = CInt(CType(value, Decimal) * 100)
+            Dim decayedText = LanguageHelper.GetString("Watcher_WatchedDecayed")
+            Return If(decayedText.Contains("{0}"), String.Format(culture, decayedText, percentage), percentage & "% " & decayedText)
+        End If
         Return CInt(CType(value, Decimal) * 100)
     End Function
 
