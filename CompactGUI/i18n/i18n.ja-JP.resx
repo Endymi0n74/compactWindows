@@ -152,14 +152,14 @@
     <comment>@MutedRule(WhiteSpaceTail)</comment>
   </data>
   <data name="SetBackgroundWatch_Time_Every" xml:space="preserve">
-    <value>every</value>
+    <value>ごとに</value>
   </data>
   <data name="SetBackgroundWatch_Time_Day" xml:space="preserve">
-    <value>day(s)</value>
+    <value>日</value>
     <comment>@MutedRule(PunctuationTail)</comment>
   </data>
   <data name="SetBackgroundWatch_Time_At" xml:space="preserve">
-    <value>at</value>
+    <value>の</value>
     <comment>@MutedRule(WhiteSpaceLead)@MutedRule(WhiteSpaceTail)</comment>
   </data>
   <data name="SetCompression" xml:space="preserve">
@@ -199,12 +199,12 @@
     <value>編集</value>
   </data>
   <data name="SetFiletypeManagement_OnlineSkiplistAgression" xml:space="preserve">
-    <value>Agression of online skiplist</value>
+    <value>オンラインスキップリストの積極度</value>
   </data>
   <data name="SetFiletypeManagement_OnlineSkiplistAgressionTip" xml:space="preserve">
-    <value>For Steam games only.
-When choosing to skip user-submitted filetypes, this setting determines how many submissions are required for each filetype to consider skipping it. 
-'low' is generally best, as higher options run the risk of skipping files that would otherwise compress well.</value>
+    <value>Steam のゲームのみ対象です。
+ユーザーの投稿によるファイルタイプのスキップを有効にする場合、この設定はスキップを判断するために必要な各ファイルタイプの投稿数を決定します。
+「低」が一般的に最適です。設定を高くすると、本来圧縮可能なはずのファイルをスキップしてしまうリスクが高まります。</value>
   </data>
   <data name="SetFiletypeManagement_OnlineSkiplistAgressionLow" xml:space="preserve">
     <value>低</value>
@@ -225,10 +225,10 @@ When choosing to skip user-submitted filetypes, this setting determines how many
     <value>データベースの結果</value>
   </data>
   <data name="CompressionDB_DatabaseResults_SearchSteamID" xml:space="preserve">
-    <value>Search by game name or SteamID...</value>
+    <value>ゲーム名または SteamID で検索...</value>
   </data>
   <data name="CompressionDB_DatabaseResults_Sort" xml:space="preserve">
-    <value>Sort By</value>
+    <value>並べ替え</value>
   </data>
   <data name="CompressionDB_DatabaseResults_SortGameName" xml:space="preserve">
     <value>ゲーム名</value>
@@ -246,7 +246,7 @@ When choosing to skip user-submitted filetypes, this setting determines how many
     <value>非圧縮時のサイズ</value>
   </data>
   <data name="Status_ContainedFiles" xml:space="preserve">
-    <value>contained files</value>
+    <value>含まれるファイル</value>
   </data>
   <data name="Home_AddFolder" xml:space="preserve">
     <value>フォルダーをキューに追加</value>
@@ -286,14 +286,14 @@ When choosing to skip user-submitted filetypes, this setting determines how many
     <value>設定で指定されたファイルタイプをスキップします</value>
   </data>
   <data name="CompressionConfiguration_SkipFileTypesLikelyPoorly" xml:space="preserve">
-    <value>Skip file types likely to compress poorly</value>
+    <value>圧縮率が低いと予想されるファイルタイプをスキップ</value>
   </data>
   <data name="CompressionConfiguration_SkipFileTypesLikelyPoorlyTip" xml:space="preserve">
-    <value>For Steam Games:
-skips files based on database results
+    <value>Steam のゲームの場合:
+データベースの結果に基づいてファイルをスキップします
 
-For Non-Steam Folders:
-skips files based on compression estimate</value>
+非 Steam のフォルダーの場合:
+圧縮率の推定値に基づいてファイルをスキップします</value>
   </data>
   <data name="CompressionConfiguration_WatchFolderChanges" xml:space="preserve">
     <value>監視するフォルダーを変更</value>
@@ -344,7 +344,7 @@ skips files based on compression estimate</value>
     <value>圧縮の概要</value>
   </data>
   <data name="Status_SpaceSaved" xml:space="preserve">
-    <value>Space Saved</value>
+    <value>節約した容量</value>
   </data>
   <data name="Status_FilesCompressed" xml:space="preserve">
     <value>Files Compressed</value>
@@ -368,13 +368,13 @@ skips files based on compression estimate</value>
     <value>実行後</value>
   </data>
   <data name="CompressionModeRadio_TotalResults" xml:space="preserve">
-    <value>Total Results</value>
+    <value>合計結果</value>
   </data>
   <data name="CompressionDB_DatabaseResults_SortAscending" xml:space="preserve">
-    <value>Ascending</value>
+    <value>昇順</value>
   </data>
   <data name="CompressionDB_DatabaseResults_SortDescending" xml:space="preserve">
-    <value>Descending</value>
+    <value>降順</value>
   </data>
   <data name="SetFiletypeManagement_LocalSkipFiletypesEdit" xml:space="preserve">
     <value>edit skipped filetypes</value>
@@ -386,16 +386,16 @@ skips files based on compression estimate</value>
     <value>リセット</value>
   </data>
   <data name="SetBackgroundWatch_CompressFolders_Never" xml:space="preserve">
-    <value>Never</value>
+    <value>しない</value>
   </data>
   <data name="SetBackgroundWatch_CompressFolders_Idle" xml:space="preserve">
-    <value>When System is Idle</value>
+    <value>システムがアイドル時</value>
   </data>
   <data name="SetBackgroundWatch_CompressFolders_OnSchedule" xml:space="preserve">
-    <value>On Schedule</value>
+    <value>スケジュールに従う</value>
   </data>
   <data name="SetBackgroundWatch_CompressFolders_OnScheduleIdle" xml:space="preserve">
-    <value>On Schedule if system is also idle</value>
+    <value>システムがアイドル時のみスケジュールに従う</value>
   </data>
   <data name="SetBackgroundWatch_CompressFolders_LastRanFormat" xml:space="preserve">
     <value>最終実行: {0:yyyy 年 M 月 d 日 \a\t HH:mm:ss}</value>
@@ -443,7 +443,7 @@ skips files based on compression estimate</value>
     <value>このフォルダーを再解析</value>
   </data>
   <data name="Watcher_WatchedDecayed" xml:space="preserve">
-    <value>decayed</value>
+    <value>劣化</value>
   </data>
   <data name="UniAdd" xml:space="preserve">
     <value>追加</value>
@@ -452,28 +452,28 @@ skips files based on compression estimate</value>
     <value>監視リストにカスタムフォルダーを追加</value>
   </data>
   <data name="Status_AwaitingCompression" xml:space="preserve">
-    <value>Awaiting Compression</value>
+    <value>圧縮待ち</value>
   </data>
   <data name="Status_Analysing" xml:space="preserve">
     <value>解析中</value>
   </data>
   <data name="Status_Compressed" xml:space="preserve">
-    <value>Compressed</value>
+    <value>圧縮済み</value>
   </data>
   <data name="Status_Unknown" xml:space="preserve">
     <value>不明</value>
   </data>
   <data name="CompressionConfiguration_SkipFile" xml:space="preserve">
-    <value>files will be skipped</value>
+    <value>個のファイルがスキップされます</value>
   </data>
   <data name="SnackBar_SnackbarPresenter" xml:space="preserve">
-    <value>The SnackbarPresenter was never set</value>
+    <value>SnackbarPresenter が設定されていません</value>
   </data>
   <data name="SnackBar_RestartAdmin" xml:space="preserve">
     <value>管理者として再起動</value>
   </data>
   <data name="SnackBar_RestartAdminTip" xml:space="preserve">
-    <value>Insufficient permission to access this folder</value>
+    <value>このフォルダーへのアクセス権限が不足しています</value>
   </data>
   <data name="SnackBar_UpdateDownload" xml:space="preserve">
     <value>クリックしてダウンロード</value>
@@ -485,19 +485,19 @@ skips files based on compression estimate</value>
     <value>Wiki への送信に失敗しました</value>
   </data>
   <data name="SnackBar_SubmitWikiFailedTip" xml:space="preserve">
-    <value>Please check your internet connection and try again</value>
+    <value>インターネット接続を確認して、再度お試しください</value>
   </data>
   <data name="SnackBar_AppliedAllFolders" xml:space="preserve">
     <value>すべてのフォルダーに適用しました</value>
   </data>
   <data name="SnackBar_AppliedAllFoldersTip" xml:space="preserve">
-    <value>Compression options have been applied to all folders</value>
+    <value>圧縮オプションをすべてのフォルダーに適用しました</value>
   </data>
   <data name="SnackBar_CannotRemoveFolder" xml:space="preserve">
     <value>フォルダーの削除ができません</value>
   </data>
   <data name="SnackBar_CannotRemoveFolderTip" xml:space="preserve">
-    <value>Please wait until the current operation is finished</value>
+    <value>現在の処理が完了するまでお待ちください</value>
   </data>
   <data name="SnackBar_Success" xml:space="preserve">
     <value>成功しました</value>
@@ -506,7 +506,7 @@ skips files based on compression estimate</value>
     <value>キューに追加しました</value>
   </data>
   <data name="SnackBar_DirectStorageTechnology" xml:space="preserve">
-    <value>This game uses DirectStorage technology. If you are using this feature, you should not compress this game.</value>
+    <value>このゲームは DirectStorage の技術を使用しています。この機能を使用している場合、ゲームの圧縮をしないことを推奨します。</value>
   </data>
   <data name="SnackBar_SubmitWikiTitle" xml:space="preserve">
     <value>Wiki に送信しました</value>
