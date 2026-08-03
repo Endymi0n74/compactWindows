@@ -258,7 +258,7 @@
     <value>実行中</value>
   </data>
   <data name="Status_ResultsState" xml:space="preserve">
-    <value>Results State</value>
+    <value>結果の状態</value>
   </data>
   <data name="CompressionMode" xml:space="preserve">
     <value>圧縮モード</value>
@@ -347,7 +347,7 @@
     <value>節約した容量</value>
   </data>
   <data name="Status_FilesCompressed" xml:space="preserve">
-    <value>Files Compressed</value>
+    <value>圧縮したファイル</value>
   </data>
   <data name="Status_CompressionMode" xml:space="preserve">
     <value>圧縮モード</value>
@@ -377,7 +377,7 @@
     <value>降順</value>
   </data>
   <data name="SetFiletypeManagement_LocalSkipFiletypesEdit" xml:space="preserve">
-    <value>edit skipped filetypes</value>
+    <value>スキップするファイルタイプを編集</value>
   </data>
   <data name="UniSave" xml:space="preserve">
     <value>保存</value>
@@ -413,7 +413,7 @@
     <value>管理者</value>
   </data>
   <data name="Title_CompressionDB" xml:space="preserve">
-    <value>圧縮 DB</value>
+    <value>圧縮データベース</value>
   </data>
   <data name="Title_Watcher" xml:space="preserve">
     <value>監視</value>
