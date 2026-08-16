@@ -7,7 +7,7 @@ Public Class WikiHandler
     ' Cache of the wiki database, downloaded once per session.
     Shared InputFromGitHub() As String
 
-    Private Const WikiDbUrl As String = "https://raw.githubusercontent.com/Endymi0n74/compactWindows/CompactGUI1/Wiki/WikiDB_Games"
+    Private Const WikiDbUrl As String = "https://raw.githubusercontent.com/Endymi0n74/compactWindows/main/Wiki/WikiDB_Games"
 
     Private Shared ReadOnly WikiHttpClient As New HttpClient With {.Timeout = TimeSpan.FromSeconds(15)}
 
