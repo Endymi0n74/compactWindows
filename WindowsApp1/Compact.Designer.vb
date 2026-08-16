@@ -63,6 +63,7 @@ Partial Class Compact
         Me.spaceSavedLabel = New System.Windows.Forms.Label()
         Me.testcompactargs = New System.Windows.Forms.Button()
         Me.buttonRevert = New System.Windows.Forms.Button()
+        Me.cancelOperationButton = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.InputPage = New System.Windows.Forms.TabPage()
         Me.buttonQueryCompact = New System.Windows.Forms.Button()
@@ -518,6 +519,19 @@ Partial Class Compact
         Me.buttonRevert.UseVisualStyleBackColor = False
         Me.buttonRevert.Visible = False
         '
+        'cancelOperationButton
+        '
+        Me.cancelOperationButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cancelOperationButton.BackColor = System.Drawing.Color.Firebrick
+        Me.cancelOperationButton.ForeColor = System.Drawing.Color.White
+        Me.cancelOperationButton.Location = New System.Drawing.Point(390, 6)
+        Me.cancelOperationButton.Name = "cancelOperationButton"
+        Me.cancelOperationButton.Size = New System.Drawing.Size(100, 27)
+        Me.cancelOperationButton.TabIndex = 32
+        Me.cancelOperationButton.Text = "Cancel"
+        Me.cancelOperationButton.UseVisualStyleBackColor = False
+        Me.cancelOperationButton.Visible = False
+        '
         'TabControl1
         '
         Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -667,6 +681,7 @@ Partial Class Compact
         Me.ProgressPage.Controls.Add(Me.progressPageLabel)
         Me.ProgressPage.Controls.Add(Me.compactprogressbar)
         Me.ProgressPage.Controls.Add(Me.progresspercent)
+        Me.ProgressPage.Controls.Add(Me.cancelOperationButton)
         Me.ProgressPage.Location = New System.Drawing.Point(4, 22)
         Me.ProgressPage.Name = "ProgressPage"
         Me.ProgressPage.Padding = New System.Windows.Forms.Padding(3)
@@ -990,6 +1005,7 @@ Partial Class Compact
     Friend WithEvents spaceSavedLabel As Label
     Friend WithEvents testcompactargs As Button
     Friend WithEvents buttonRevert As Button
+    Friend WithEvents cancelOperationButton As Button
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents InputPage As TabPage
     Friend WithEvents ProgressPage As TabPage

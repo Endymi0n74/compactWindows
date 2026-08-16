@@ -319,7 +319,7 @@ Public Class Compact
     Private Sub SetupScanSpinner()
         scanStatusLabel = New Label With {
             .AutoSize = False,
-            .Location = New Point(59, 99),
+            .Location = New Point(59, 98),
             .Size = New Size(374, 16),
             .TextAlign = ContentAlignment.MiddleLeft,
             .Font = New Font("Segoe UI", 8.25F),
@@ -328,11 +328,32 @@ Public Class Compact
             .Visible = False
         }
         InputPage.Controls.Add(scanStatusLabel)
+
+        scanProgressBar = New ProgressBar With {
+            .Style = System.Windows.Forms.ProgressBarStyle.Continuous,
+            .Minimum = 0,
+            .Maximum = 100,
+            .Location = New Point(59, 116),
+            .Size = New Size(374, 8),
+            .Visible = False
+        }
+        InputPage.Controls.Add(scanProgressBar)
     End Sub
 
 
     Private Sub UpdateScanStatusLabel()
-        scanStatusLabel.Text = "Scanning folder… " & scanFileCount.ToString("N0") & " files, " & scanDirCount.ToString("N0") & " folders"
+        If scanCounting Then
+            scanStatusLabel.Text = "Counting files…"
+        Else
+            Dim percent As Long = 0
+            If scanFileTotal > 0 Then
+                percent = Math.Min(100L, (scanFileCount * 100L) \ scanFileTotal)
+            End If
+            If scanProgressBar.Value <> CInt(percent) Then
+                scanProgressBar.Value = CInt(percent)
+            End If
+            scanStatusLabel.Text = "Scanning folder… " & scanFileCount.ToString("N0") & " / " & scanFileTotal.ToString("N0") & " files, " & scanDirCount.ToString("N0") & " folders"
+        End If
     End Sub
 
 
@@ -475,9 +496,12 @@ Public Class Compact
     Dim uncompressedfoldersize
 
     'Folder-scan state: the scan runs on a background thread so the UI stays responsive.
-    'The status label shows live file/folder counts as the walk progresses.
+    'A fast file-count pass drives a determinate progress bar for the full size walk.
     Private WithEvents scanStatusLabel As Label
+    Private WithEvents scanProgressBar As ProgressBar
     Private isScanning As Boolean = False
+    Private scanCounting As Boolean = False
+    Private scanFileTotal As Long = 0
     Private scanFileCount As Long = 0
     Private scanDirCount As Long = 0
     Private scanCts As CancellationTokenSource
@@ -541,15 +565,40 @@ Public Class Compact
 
         'Indicate that the folder is being scanned without blocking the message loop.
         isScanning = True
+        scanCounting = True
+        scanFileTotal = 0
         scanFileCount = 0
         scanDirCount = 0
         Me.UseWaitCursor = True
         chosenDirDisplay.Text = DIwDString.Parent.ToString + " ❯ " + DIwDString.Name.ToString
-        scanStatusLabel.Text = "Scanning folder… 0 files, 0 folders"
+        scanProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee
+        scanProgressBar.MarqueeAnimationSpeed = 30
+        scanProgressBar.Value = 0
+        scanProgressBar.Visible = True
+        scanStatusLabel.Text = "Counting files…"
         scanStatusLabel.Visible = True
         buttonCompress.Enabled = False
         buttonQueryCompact.Visible = False
         seecompest.Visible = False
+
+        'Phase 1: fast pass to count files so the full walk can show a determinate bar.
+        Dim totalFiles As Long = 0
+        Try
+            totalFiles = Await Task.Run(Function() CountFilesMetrics(DIwDString, ct))
+        Catch ex As Exception
+            totalFiles = 0
+        End Try
+
+        If Me.IsDisposed OrElse Me.Disposing Then Return
+        If ct.IsCancellationRequested Then Return
+
+        'Phase 2: full walk (size + counts) driven by the known total.
+        scanCounting = False
+        scanFileTotal = totalFiles
+        scanFileCount = 0
+        scanDirCount = 0
+        scanProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        scanProgressBar.Value = 0
 
         Dim metrics As FolderMetrics
         Try
@@ -568,6 +617,7 @@ Public Class Compact
 
         Me.UseWaitCursor = False
         scanStatusLabel.Visible = False
+        scanProgressBar.Visible = False
         isScanning = False
 
         uncompressedfoldersize = metrics.TotalSize
@@ -742,6 +792,7 @@ Public Class Compact
         CompResultsPanel.Visible = False
         buttonRevert.Visible = False
         returnArrow.Visible = False
+        cancelOperationButton.Visible = True
         progressPageLabel.Text = "Compressing, Please Wait"
         TabControl1.SelectedTab = ProgressPage
 
@@ -769,6 +820,7 @@ Public Class Compact
         hasqueryfinished = 1
         buttonRevert.Visible = True
         returnArrow.Visible = True
+        cancelOperationButton.Visible = False
         CalculateSaving()
         QdirCountProgress = 0
     End Function
@@ -782,6 +834,7 @@ Public Class Compact
         ResetOperationProgress()
         progresspercent.Visible = True
         progressPageLabel.Text = "Analyzing"
+        cancelOperationButton.Visible = True
         TabControl1.SelectedTab = ProgressPage
 
         If Not Await RunOperationAsync("query") Then
@@ -792,6 +845,7 @@ Public Class Compact
         progresspercent.Visible = False
         buttonRevert.Visible = True
         returnArrow.Visible = True
+        cancelOperationButton.Visible = False
         CalculateSaving()
         QdirCountProgress = 0
     End Function
@@ -809,6 +863,7 @@ Public Class Compact
         CompResultsPanel.Visible = False
         buttonRevert.Visible = False
         returnArrow.Visible = False
+        cancelOperationButton.Visible = True
         progressPageLabel.Text = "Reverting Changes, Please Wait"
         TabControl1.SelectedTab = ProgressPage
 
@@ -822,6 +877,7 @@ Public Class Compact
         buttonRevert.Visible = False
         progressPageLabel.Text = "Folder Uncompressed."
         returnArrow.Visible = True
+        cancelOperationButton.Visible = False
 
         If checkShutdownOnCompletion.Checked Then
             ShutdownDialog.SDProcIntent.Text = comboChooseShutdown.Text
@@ -839,6 +895,7 @@ Public Class Compact
         returnArrow.Visible = False
         CompResultsPanel.Visible = False
         progresspercent.Visible = False
+        cancelOperationButton.Visible = False
         TabControl1.SelectedTab = InputPage
     End Sub
 
@@ -854,6 +911,18 @@ Public Class Compact
         If scanCts IsNot Nothing Then
             scanCts.Cancel()
         End If
+    End Sub
+
+
+    Private Sub CancelAll()
+        CancelOperation()
+        CancelScan()
+    End Sub
+
+
+    Private Sub CancelOperationButton_Click(sender As Object, e As EventArgs) Handles cancelOperationButton.Click
+        cancelOperationButton.Visible = False
+        CancelAll()
     End Sub
 
 
@@ -892,7 +961,8 @@ Public Class Compact
         dirCountProgress = 0
         fileCountProgress = 0
         isQueryCalledByCompact = 0
-        CancelOperation()
+        CancelAll()
+        cancelOperationButton.Visible = False
     End Sub
 
 
@@ -928,8 +998,7 @@ Public Class Compact
                 e.Cancel = True
 
             Else
-                CancelOperation()
-                CancelScan()
+                CancelAll()
             End If
         Else
             CancelOperation()
@@ -1134,6 +1203,40 @@ Public Class Compact
         MeasureFolder(dInfo, m.TotalSize, m.FileCount, m.DirCount, ct)
         Return m
     End Function
+
+
+    'Fast first pass: count files only (using string enumeration, no FileInfo
+    'objects) so the second, size-accumulating pass can report a percentage.
+    Private Function CountFilesMetrics(ByVal dInfo As IO.DirectoryInfo, ct As CancellationToken) As Long
+        Dim count As Long = 0
+        CountFiles(dInfo, count, ct)
+        Return count
+    End Function
+
+
+    Private Sub CountFiles(ByVal dInfo As IO.DirectoryInfo, ByRef count As Long, ct As CancellationToken)
+        If ct.IsCancellationRequested Then Return
+
+        Try
+            For Each f As String In Directory.EnumerateFiles(dInfo.FullName)
+                If ct.IsCancellationRequested Then Return
+                count += 1
+            Next
+        Catch ex As UnauthorizedAccessException
+            Return
+        Catch ex As Exception
+            Return
+        End Try
+
+        Try
+            For Each dir As String In Directory.EnumerateDirectories(dInfo.FullName)
+                If ct.IsCancellationRequested Then Return
+                CountFiles(New DirectoryInfo(dir), count, ct)
+            Next
+        Catch ex As UnauthorizedAccessException
+        Catch ex As Exception
+        End Try
+    End Sub
 
 
     'Called from the background scan thread; the dialog itself is marshalled to the UI thread.
