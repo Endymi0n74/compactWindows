@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/Endymi0n74/compactWindows/releases/latest"><img alt="GitHub release" src="https://img.shields.io/github/v/release/Endymi0n74/compactWindows?label=latest%20release"></a>
-  <a href="https://github.com/Endymi0n74/compactWindows/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-blue.svg"></a>
+  <a href="https://github.com/Endymi0n74/compactWindows/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-blue.svg"></a>
   <img alt="Platform" src="https://img.shields.io/badge/platform-Windows%2010%2F11-blue">
   <img alt=".NET" src="https://img.shields.io/badge/.NET%20Framework-4.7-blue">
 </p>
@@ -58,9 +58,7 @@ A community-maintained list of tested games and their measured savings lives in 
 
 ## Screenshots
 
-<p align="left"><img src="https://i.imgur.com/f8yzhw2.png" alt="compactWindows screenshot 1"></p>
-<p align="left"><img src="https://i.imgur.com/4yhwOGm.png" alt="compactWindows screenshot 2"></p>
-<p align="left"><img src="https://i.imgur.com/7ip5SAA.png" alt="compactWindows screenshot 3"></p>
+<p align="center"><img src="docs/screenshot-dark.png" alt="compactWindows dark UI" width="720"></p>
 
 ## Building from source
 
