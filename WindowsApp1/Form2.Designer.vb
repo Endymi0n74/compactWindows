@@ -51,6 +51,7 @@ Partial Class Form2
         Me.GamesTable.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.GamesTable.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
         Me.GamesTable.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
+        Me.GamesTable.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.GamesTable.Location = New System.Drawing.Point(16, 191)
         Me.GamesTable.Name = "GamesTable"
         Me.GamesTable.RowCount = 1
@@ -64,6 +65,7 @@ Partial Class Form2
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(11, 149)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(131, 25)
@@ -72,8 +74,8 @@ Partial Class Form2
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Panel5)
         Me.Panel1.Controls.Add(Me.Panel4)
@@ -89,6 +91,7 @@ Partial Class Form2
         'Panel3
         '
         Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Panel3.Location = New System.Drawing.Point(406, 28)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(10, 104)
@@ -98,6 +101,7 @@ Partial Class Form2
         '
         Me.Panel5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Panel5.Location = New System.Drawing.Point(13, 23)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(404, 10)
@@ -105,6 +109,7 @@ Partial Class Form2
         '
         'Panel4
         '
+        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Panel4.Location = New System.Drawing.Point(8, 24)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(10, 108)
@@ -114,7 +119,8 @@ Partial Class Form2
         '
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(58, Byte), Integer))
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Panel2.Controls.Add(Me.lblCompactIssues)
         Me.Panel2.Controls.Add(Me.Label4)
         Me.Panel2.Controls.Add(Me.wkPostSizeUnit)
@@ -131,7 +137,7 @@ Partial Class Form2
         '
         Me.lblCompactIssues.AutoSize = True
         Me.lblCompactIssues.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCompactIssues.ForeColor = System.Drawing.Color.DarkRed
+        Me.lblCompactIssues.ForeColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.lblCompactIssues.Location = New System.Drawing.Point(213, 75)
         Me.lblCompactIssues.Name = "lblCompactIssues"
         Me.lblCompactIssues.Size = New System.Drawing.Size(103, 15)
@@ -144,7 +150,7 @@ Partial Class Form2
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.ForestGreen
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(134, Byte), Integer), CType(CType(239, Byte), Integer), CType(CType(172, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(210, 9)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(170, 17)
@@ -156,7 +162,7 @@ Partial Class Form2
         Me.wkPostSizeUnit.AutoSize = True
         Me.wkPostSizeUnit.BackColor = System.Drawing.Color.Transparent
         Me.wkPostSizeUnit.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.wkPostSizeUnit.ForeColor = System.Drawing.Color.DimGray
+        Me.wkPostSizeUnit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.wkPostSizeUnit.Location = New System.Drawing.Point(292, 34)
         Me.wkPostSizeUnit.Margin = New System.Windows.Forms.Padding(0)
         Me.wkPostSizeUnit.Name = "wkPostSizeUnit"
@@ -170,7 +176,7 @@ Partial Class Form2
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(16, 9)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(170, 17)
@@ -182,7 +188,7 @@ Partial Class Form2
         Me.wkPreSizeUnit.AutoSize = True
         Me.wkPreSizeUnit.BackColor = System.Drawing.Color.Transparent
         Me.wkPreSizeUnit.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.wkPreSizeUnit.ForeColor = System.Drawing.Color.DimGray
+        Me.wkPreSizeUnit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.wkPreSizeUnit.Location = New System.Drawing.Point(70, 34)
         Me.wkPreSizeUnit.Margin = New System.Windows.Forms.Padding(0)
         Me.wkPreSizeUnit.Name = "wkPreSizeUnit"
@@ -195,6 +201,7 @@ Partial Class Form2
         Me.wkPreSizeVal.AutoSize = True
         Me.wkPreSizeVal.BackColor = System.Drawing.Color.Transparent
         Me.wkPreSizeVal.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.wkPreSizeVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.wkPreSizeVal.Location = New System.Drawing.Point(10, 26)
         Me.wkPreSizeVal.Margin = New System.Windows.Forms.Padding(0)
         Me.wkPreSizeVal.Name = "wkPreSizeVal"
@@ -207,6 +214,7 @@ Partial Class Form2
         Me.wkPostSizeVal.AutoSize = True
         Me.wkPostSizeVal.BackColor = System.Drawing.Color.Transparent
         Me.wkPostSizeVal.Font = New System.Drawing.Font("Segoe UI", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.wkPostSizeVal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.wkPostSizeVal.Location = New System.Drawing.Point(205, 26)
         Me.wkPostSizeVal.Margin = New System.Windows.Forms.Padding(0)
         Me.wkPostSizeVal.Name = "wkPostSizeVal"
@@ -218,7 +226,7 @@ Partial Class Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(430, 375)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

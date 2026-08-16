@@ -305,6 +305,8 @@ Public Class Compact
 
         SetupScanSpinner()
 
+        BuildModernUi()
+
         progressTimer.Start()                                                                   'Starts a timer that keeps track of changes during any operation.
 
         For Each arg In My.Application.CommandLineArgs
@@ -319,8 +321,8 @@ Public Class Compact
     Private Sub SetupScanSpinner()
         scanStatusLabel = New Label With {
             .AutoSize = False,
-            .Location = New Point(59, 98),
-            .Size = New Size(374, 16),
+            .Location = New Point(30, 160),
+            .Size = New Size(520, 16),
             .TextAlign = ContentAlignment.MiddleLeft,
             .Font = New Font("Segoe UI", 8.25F),
             .ForeColor = Color.FromArgb(52, 152, 219),
@@ -333,12 +335,275 @@ Public Class Compact
             .Style = System.Windows.Forms.ProgressBarStyle.Continuous,
             .Minimum = 0,
             .Maximum = 100,
-            .Location = New Point(59, 116),
-            .Size = New Size(374, 8),
+            .Location = New Point(30, 180),
+            .Size = New Size(520, 8),
             .Visible = False
         }
         InputPage.Controls.Add(scanProgressBar)
     End Sub
+
+
+    'Builds the mockup-style modern UI: top bar (Admin pill + nav tabs), left
+    'sidebar with the folder queue, and the Home-page header/stats/summary.
+    Private Sub BuildModernUi()
+        'Hide the TabControl header strip; the top-bar nav tabs drive page selection.
+        TabControl1.SizeMode = TabSizeMode.Fixed
+        TabControl1.ItemSize = New Size(0, 1)
+
+        '--- Top bar: Admin pill + nav tabs (the "⚙" gear is showinfopopup) ---
+        adminButton = MakePillButton("Admin", 16, 15, 78, 30, Color.FromArgb(124, 58, 237))
+        Panel1.Controls.Add(adminButton)
+        AddHandler adminButton.Click, AddressOf AdminButton_Click
+
+        navHome = MakeNavTab("🏠  Home", 118)
+        navWatcher = MakeNavTab("👁  Watcher", 215)
+        navDB = MakeNavTab("🗄  Compression DB", 330)
+        Panel1.Controls.Add(navHome)
+        Panel1.Controls.Add(navWatcher)
+        Panel1.Controls.Add(navDB)
+        AddHandler navHome.Click, AddressOf NavHome_Click
+        AddHandler navWatcher.Click, AddressOf NavWatcher_Click
+        AddHandler navDB.Click, AddressOf NavDB_Click
+        SetNavActive(0)
+
+        '--- Left sidebar: add-to-queue button + folder queue ---
+        sidebarPanel = New Panel With {
+            .BackColor = Color.FromArgb(11, 17, 32),
+            .Location = New Point(0, 60),
+            .Size = New Size(200, 700),
+            .Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        }
+        addFolderButton = MakePillButton("＋  Add Folder to Queue", 12, 16, 176, 42, Color.FromArgb(124, 58, 237))
+        sidebarPanel.Controls.Add(addFolderButton)
+        AddHandler addFolderButton.Click, AddressOf SelectFolderToCompress
+
+        queueList = New ListBox With {
+            .BackColor = Color.FromArgb(15, 23, 42),
+            .ForeColor = Color.FromArgb(203, 213, 225),
+            .BorderStyle = BorderStyle.None,
+            .Location = New Point(12, 70),
+            .Size = New Size(176, 560),
+            .Font = New Font("Segoe UI", 9.0F)
+        }
+        sidebarPanel.Controls.Add(queueList)
+        AddHandler queueList.SelectedIndexChanged, AddressOf QueueList_SelectedIndexChanged
+        Controls.Add(sidebarPanel)
+        sidebarPanel.BringToFront()
+
+        '--- Home page: folder header + live stats row ---
+        folderTitleLabel = MakeLabel("No folder selected", 30, 14, 20.0F, True, Color.FromArgb(241, 245, 249))
+        folderPathLabel = MakeLabel("", 32, 54, 9.5F, False, Color.FromArgb(148, 163, 184))
+        statSizeLabel = MakeLabel("uncompressed size  —", 30, 108, 10.0F, False, Color.FromArgb(203, 213, 225))
+        statFilesLabel = MakeLabel("contained files  —", 260, 108, 10.0F, False, Color.FromArgb(203, 213, 225))
+        statusDot = New Panel With {
+            .BackColor = Color.FromArgb(148, 163, 184),
+            .Location = New Point(470, 112),
+            .Size = New Size(12, 12)
+        }
+        statusLabel = MakeLabel("Not compressed", 490, 106, 10.0F, True, Color.FromArgb(148, 163, 184))
+        dividerPanel = New Panel With {
+            .BackColor = Color.FromArgb(51, 65, 85),
+            .Location = New Point(30, 136),
+            .Size = New Size(700, 1)
+        }
+        InputPage.Controls.AddRange(New Control() {folderTitleLabel, folderPathLabel, statSizeLabel, statFilesLabel, statusDot, statusLabel, dividerPanel})
+
+        '--- Compression summary: before/after bars + metric cards ---
+        summaryPanel = New Panel With {
+            .BackColor = Color.Transparent,
+            .Location = New Point(30, 148),
+            .Size = New Size(700, 232),
+            .Visible = False
+        }
+        summaryPanel.Controls.Add(MakeLabel("Compression Summary", 0, 0, 11.0F, True, Color.FromArgb(241, 245, 249)))
+
+        beforeBar = New Panel With {.BackColor = Color.FromArgb(51, 65, 85), .Location = New Point(0, 30), .Size = New Size(520, 30)}
+        beforeFill = New Panel With {.BackColor = Color.FromArgb(252, 211, 77), .Location = New Point(0, 0), .Size = New Size(0, 30)}
+        beforeBar.Controls.Add(beforeFill)
+        summaryPanel.Controls.Add(beforeBar)
+        summaryPanel.Controls.Add(MakeLabel("Before", 532, 35, 10.0F, False, Color.FromArgb(148, 163, 184)))
+        beforeSizeLabel = MakeLabel("—", 616, 33, 11.0F, True, Color.FromArgb(241, 245, 249))
+        summaryPanel.Controls.Add(beforeSizeLabel)
+
+        afterBar = New Panel With {.BackColor = Color.FromArgb(51, 65, 85), .Location = New Point(0, 72), .Size = New Size(520, 30)}
+        afterFill = New Panel With {.BackColor = Color.FromArgb(134, 239, 172), .Location = New Point(0, 0), .Size = New Size(0, 30)}
+        afterBar.Controls.Add(afterFill)
+        summaryPanel.Controls.Add(afterBar)
+        summaryPanel.Controls.Add(MakeLabel("After", 532, 77, 10.0F, False, Color.FromArgb(148, 163, 184)))
+        afterSizeLabel = MakeLabel("—", 616, 75, 11.0F, True, Color.FromArgb(241, 245, 249))
+        summaryPanel.Controls.Add(afterSizeLabel)
+
+        summaryPanel.Controls.Add(MakeCard(0, 120, "Space Saved", cardSpaceSavedValue))
+        summaryPanel.Controls.Add(MakeCard(240, 120, "Files Compressed", cardFilesCompressedValue))
+        summaryPanel.Controls.Add(MakeCard(480, 120, "Compression Mode", cardCompressionModeValue))
+        InputPage.Controls.Add(summaryPanel)
+
+        InputPage.Controls.Add(MakeLabel("Compression Options", 30, 386, 11.0F, True, Color.FromArgb(241, 245, 249)))
+    End Sub
+
+
+    Private Function MakeLabel(text As String, x As Integer, y As Integer, size As Single, bold As Boolean, color As Color) As Label
+        Return New Label With {
+            .Text = text,
+            .AutoSize = True,
+            .Location = New Point(x, y),
+            .Font = New Font("Segoe UI", size, If(bold, FontStyle.Bold, FontStyle.Regular)),
+            .ForeColor = color
+        }
+    End Function
+
+
+    Private Function MakePillButton(text As String, x As Integer, y As Integer, w As Integer, h As Integer, color As Color) As Button
+        Dim b As New Button With {
+            .Text = text,
+            .FlatStyle = FlatStyle.Flat,
+            .BackColor = color,
+            .ForeColor = Color.White,
+            .Location = New Point(x, y),
+            .Size = New Size(w, h),
+            .Font = New Font("Segoe UI", 9.0F),
+            .Cursor = Cursors.Hand
+        }
+        b.FlatAppearance.BorderSize = 0
+        RoundCorners(b, Math.Min(w, h) \ 2)
+        Return b
+    End Function
+
+
+    Private Function MakeNavTab(text As String, x As Integer) As Label
+        Return New Label With {
+            .Text = text,
+            .AutoSize = True,
+            .Location = New Point(x, 18),
+            .Font = New Font("Segoe UI", 10.5F, FontStyle.Regular),
+            .ForeColor = Color.FromArgb(203, 213, 225),
+            .Cursor = Cursors.Hand
+        }
+    End Function
+
+
+    Private Function MakeCard(x As Integer, y As Integer, labelText As String, ByRef valueLabel As Label) As Panel
+        Dim card As New Panel With {
+            .BackColor = Color.FromArgb(22, 33, 58),
+            .Location = New Point(x, y),
+            .Size = New Size(220, 84)
+        }
+        Dim caption As New Label With {
+            .Text = labelText,
+            .AutoSize = True,
+            .Location = New Point(14, 14),
+            .Font = New Font("Segoe UI", 9.0F),
+            .ForeColor = Color.FromArgb(148, 163, 184)
+        }
+        valueLabel = New Label With {
+            .Text = "—",
+            .AutoSize = True,
+            .Location = New Point(14, 42),
+            .Font = New Font("Segoe UI", 20.0F, FontStyle.Bold),
+            .ForeColor = Color.FromArgb(241, 245, 249)
+        }
+        card.Controls.Add(caption)
+        card.Controls.Add(valueLabel)
+        Return card
+    End Function
+
+
+    <DllImport("gdi32.dll")>
+    Private Shared Function CreateRoundRectRgn(ByVal left As Integer, ByVal top As Integer, ByVal right As Integer, ByVal bottom As Integer, ByVal w As Integer, ByVal h As Integer) As IntPtr
+    End Function
+
+    Private Sub RoundCorners(ctrl As Control, radius As Integer)
+        Try
+            ctrl.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, ctrl.Width + 1, ctrl.Height + 1, radius, radius))
+        Catch ex As Exception
+        End Try
+    End Sub
+
+
+    Private Sub SetNavActive(page As Integer)
+        navHome.ForeColor = Color.FromArgb(203, 213, 225)
+        navWatcher.ForeColor = Color.FromArgb(203, 213, 225)
+        navDB.ForeColor = Color.FromArgb(203, 213, 225)
+        navHome.Font = New Font("Segoe UI", 10.5F, FontStyle.Regular)
+        navWatcher.Font = New Font("Segoe UI", 10.5F, FontStyle.Regular)
+        navDB.Font = New Font("Segoe UI", 10.5F, FontStyle.Regular)
+        Select Case page
+            Case 0
+                navHome.ForeColor = Color.FromArgb(167, 139, 250)
+                navHome.Font = New Font("Segoe UI", 10.5F, FontStyle.Bold)
+            Case 1
+                navWatcher.ForeColor = Color.FromArgb(167, 139, 250)
+                navWatcher.Font = New Font("Segoe UI", 10.5F, FontStyle.Bold)
+            Case 2
+                navDB.ForeColor = Color.FromArgb(167, 139, 250)
+                navDB.Font = New Font("Segoe UI", 10.5F, FontStyle.Bold)
+        End Select
+    End Sub
+
+
+    Private Sub NavHome_Click(sender As Object, e As EventArgs)
+        TabControl1.SelectedIndex = 0
+        SetNavActive(0)
+    End Sub
+    Private Sub NavWatcher_Click(sender As Object, e As EventArgs)
+        TabControl1.SelectedIndex = 1
+        SetNavActive(1)
+    End Sub
+    Private Sub NavDB_Click(sender As Object, e As EventArgs)
+        TabControl1.SelectedIndex = 2
+        SetNavActive(2)
+    End Sub
+
+
+    Private Sub AdminButton_Click(sender As Object, e As EventArgs)
+        If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) Then
+            MessageBox.Show("CompactGUI is already running as Administrator.", "Admin", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            RCMenu.RunAsAdmin()
+        End If
+    End Sub
+
+
+    Private Async Sub QueueList_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If queueList.SelectedItem IsNot Nothing Then
+            Dim sel As String = queueList.SelectedItem.ToString()
+            If Not String.Equals(sel, workingDir, StringComparison.OrdinalIgnoreCase) Then
+                Await SelectFolder(sel, "button")
+            End If
+        End If
+    End Sub
+
+
+    Private Sub SetCompressedStatus(compressed As Boolean)
+        If compressed Then
+            statusDot.BackColor = Color.FromArgb(134, 239, 172)
+            statusLabel.Text = "Compressed"
+            statusLabel.ForeColor = Color.FromArgb(134, 239, 172)
+        Else
+            statusDot.BackColor = Color.FromArgb(148, 163, 184)
+            statusLabel.Text = "Not compressed"
+            statusLabel.ForeColor = Color.FromArgb(148, 163, 184)
+        End If
+    End Sub
+
+
+    Private Sub ResetSummary()
+        beforeFill.Width = 0
+        afterFill.Width = 0
+        beforeSizeLabel.Text = "—"
+        afterSizeLabel.Text = "—"
+        cardSpaceSavedValue.Text = "—"
+        cardFilesCompressedValue.Text = "—"
+        cardCompressionModeValue.Text = "—"
+    End Sub
+
+
+    Private Function GetCompressionModeText() As String
+        If compressX4.Checked Then Return "X4"
+        If compressX16.Checked Then Return "X16"
+        If compressLZX.Checked Then Return "LZX"
+        Return "X8"
+    End Function
 
 
     Private Sub UpdateScanStatusLabel()
@@ -496,7 +761,7 @@ Public Class Compact
     Dim uncompressedfoldersize
 
     'Folder-scan state: the scan runs on a background thread so the UI stays responsive.
-    'A fast file-count pass drives a determinate progress bar for the full size walk.
+    'A fast file-count pass, run in parallel with the size walk, drives the determinate bar.
     Private WithEvents scanStatusLabel As Label
     Private WithEvents scanProgressBar As ProgressBar
     Private isScanning As Boolean = False
@@ -505,6 +770,32 @@ Public Class Compact
     Private scanFileCount As Long = 0
     Private scanDirCount As Long = 0
     Private scanCts As CancellationTokenSource
+
+    'Modern UI controls (created at startup in BuildModernUi).
+    Private adminButton As Button
+    Private navHome As Label
+    Private navWatcher As Label
+    Private navDB As Label
+    Private sidebarPanel As Panel
+    Private addFolderButton As Button
+    Private queueList As ListBox
+    Private folderTitleLabel As Label
+    Private folderPathLabel As Label
+    Private statSizeLabel As Label
+    Private statFilesLabel As Label
+    Private statusDot As Panel
+    Private statusLabel As Label
+    Private dividerPanel As Panel
+    Private summaryPanel As Panel
+    Private beforeBar As Panel
+    Private beforeFill As Panel
+    Private afterBar As Panel
+    Private afterFill As Panel
+    Private beforeSizeLabel As Label
+    Private afterSizeLabel As Label
+    Private cardSpaceSavedValue As Label
+    Private cardFilesCompressedValue As Label
+    Private cardCompressionModeValue As Label
 
     Private Class FolderMetrics
         Public TotalSize As Long
@@ -563,6 +854,19 @@ Public Class Compact
         directorysizeexceptionCount = 0
         workingDir = wDString.ToString()
 
+        'Mirror the chosen folder into the sidebar queue + Home header.
+        If Not queueList.Items.Contains(wDString) Then
+            queueList.Items.Add(wDString)
+        End If
+        queueList.SelectedItem = wDString
+        folderTitleLabel.Text = DIwDString.Name
+        folderPathLabel.Text = wDString
+        statSizeLabel.Text = "uncompressed size  —"
+        statFilesLabel.Text = "contained files  —"
+        SetCompressedStatus(False)
+        ResetSummary()
+        summaryPanel.Visible = False
+
         'Indicate that the folder is being scanned without blocking the message loop.
         isScanning = True
         scanCounting = True
@@ -581,10 +885,18 @@ Public Class Compact
         buttonQueryCompact.Visible = False
         seecompest.Visible = False
 
-        'Phase 1: fast pass to count files so the full walk can show a determinate bar.
+        'Launch the fast file-count pass and the full size walk at the same time so the
+        'tree is never walked back-to-back: the count (string enumeration, no FileInfo
+        'objects) finishes well before the size walk, letting the determinate progress
+        'bar come alive almost immediately while the size walk keeps running.
+        Dim countTask As Task(Of Long) = Task.Run(Function() CountFilesMetrics(DIwDString, ct))
+        Dim measureTask As Task(Of FolderMetrics) = Task.Run(Function() MeasureFolderMetrics(DIwDString, ct))
+
+        'Wait for the count to finish so the bar can switch from marquee to determinate.
+        'The size walk keeps running in the meantime and drives the live counters.
         Dim totalFiles As Long = 0
         Try
-            totalFiles = Await Task.Run(Function() CountFilesMetrics(DIwDString, ct))
+            totalFiles = Await countTask
         Catch ex As Exception
             totalFiles = 0
         End Try
@@ -592,20 +904,16 @@ Public Class Compact
         If Me.IsDisposed OrElse Me.Disposing Then Return
         If ct.IsCancellationRequested Then Return
 
-        'Phase 2: full walk (size + counts) driven by the known total.
+        'The size walk is already publishing live counters, so just publish the total.
         scanCounting = False
         scanFileTotal = totalFiles
-        scanFileCount = 0
-        scanDirCount = 0
         scanProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         scanProgressBar.Value = 0
 
+        'Wait for the full walk (size + counts) to finish.
         Dim metrics As FolderMetrics
         Try
-            'Walk the tree once on a background thread and reuse the result everywhere.
-            'The original code enumerated the folder five separate times on the UI thread,
-            'which froze the window for several seconds on large folders.
-            metrics = Await Task.Run(Function() MeasureFolderMetrics(DIwDString, ct))
+            metrics = Await measureTask
         Catch ex As Exception
             metrics = New FolderMetrics
         End Try
@@ -625,6 +933,9 @@ Public Class Compact
         dirCountTotal = metrics.DirCount + 1
 
         preSize.Text = "Uncompressed Size: " + GetOutputSize(metrics.TotalSize, True)
+        statSizeLabel.Text = "uncompressed size  " & GetOutputSize(metrics.TotalSize, True)
+        statFilesLabel.Text = "contained files  " & metrics.FileCount.ToString("N0")
+        summaryPanel.Visible = True
 
         dirLabelResults = DIwDString.Name.ToString
 
@@ -1060,6 +1371,8 @@ Public Class Compact
             progressPageLabel.Text = "Folder is not compressed"
             buttonRevert.Visible = False
             isQueryCalledByCompact = 0
+            SetCompressedStatus(False)
+            ResetSummary()
 
         Else
 
@@ -1084,6 +1397,22 @@ Public Class Compact
 
             labelFilesCompressed.Text =
                 numberFilesCompressed.ToString + " / " + fileCountTotal.ToString + " files compressed"
+
+            'Mirror the results into the Home-page summary bars + cards.
+            Dim origBytes As Decimal = CDec(uncompressedfoldersize)
+            Dim savedBytes As Decimal = CDec(oldFolderSize - newFolderSize)
+            Dim newBytes As Decimal = origBytes - savedBytes
+            If origBytes > 0 AndAlso newBytes > 0 Then
+                Dim frac As Double = Math.Min(1.0, CDbl(newBytes) / CDbl(origBytes))
+                beforeFill.Width = 520
+                afterFill.Width = CInt(520 * frac)
+                beforeSizeLabel.Text = GetOutputSize(origBytes, True)
+                afterSizeLabel.Text = GetOutputSize(newBytes, True)
+                cardSpaceSavedValue.Text = Math.Round((1 - frac) * 100) & "%"
+                cardFilesCompressedValue.Text = numberFilesCompressed.ToString("N0")
+                cardCompressionModeValue.Text = GetCompressionModeText()
+                SetCompressedStatus(True)
+            End If
 
             Try
 
@@ -1205,8 +1534,8 @@ Public Class Compact
     End Function
 
 
-    'Fast first pass: count files only (using string enumeration, no FileInfo
-    'objects) so the second, size-accumulating pass can report a percentage.
+    'Fast count pass: counts files only (string enumeration, no FileInfo objects) so
+    'the size-accumulating walk can report a percentage as it runs.
     Private Function CountFilesMetrics(ByVal dInfo As IO.DirectoryInfo, ct As CancellationToken) As Long
         Dim count As Long = 0
         CountFiles(dInfo, count, ct)

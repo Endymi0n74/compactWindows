@@ -128,6 +128,7 @@ Partial Class Compact
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(340, 20)
         Me.TextBox1.TabIndex = 1
+        Me.TextBox1.Visible = False
         '
         'Button1
         '
@@ -137,18 +138,19 @@ Partial Class Compact
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "SendCMD"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'buttonCompress
         '
-        Me.buttonCompress.BackColor = System.Drawing.Color.Gainsboro
+        Me.buttonCompress.BackColor = System.Drawing.Color.FromArgb(CType(CType(124, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(237, Byte), Integer))
         Me.buttonCompress.Enabled = False
-        Me.buttonCompress.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.buttonCompress.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.buttonCompress.ForeColor = System.Drawing.Color.DarkGray
-        Me.buttonCompress.Location = New System.Drawing.Point(8, 302)
-        Me.buttonCompress.Margin = New System.Windows.Forms.Padding(8, 3, 3, 3)
+        Me.buttonCompress.FlatAppearance.BorderSize = 0
+        Me.buttonCompress.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.buttonCompress.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.buttonCompress.ForeColor = System.Drawing.Color.White
+        Me.buttonCompress.Location = New System.Drawing.Point(556, 580)
         Me.buttonCompress.Name = "buttonCompress"
-        Me.buttonCompress.Size = New System.Drawing.Size(390, 54)
+        Me.buttonCompress.Size = New System.Drawing.Size(170, 50)
         Me.buttonCompress.TabIndex = 3
         Me.buttonCompress.Text = "Compress Folder"
         Me.buttonCompress.UseVisualStyleBackColor = False
@@ -162,7 +164,7 @@ Partial Class Compact
         Me.checkRecursiveScan.AutoSize = True
         Me.checkRecursiveScan.Checked = True
         Me.checkRecursiveScan.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.checkRecursiveScan.ForeColor = System.Drawing.Color.DimGray
+        Me.checkRecursiveScan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.checkRecursiveScan.Location = New System.Drawing.Point(35, 48)
         Me.checkRecursiveScan.Name = "checkRecursiveScan"
         Me.checkRecursiveScan.Size = New System.Drawing.Size(190, 17)
@@ -173,7 +175,7 @@ Partial Class Compact
         'checkHiddenFiles
         '
         Me.checkHiddenFiles.AutoSize = True
-        Me.checkHiddenFiles.ForeColor = System.Drawing.Color.DimGray
+        Me.checkHiddenFiles.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.checkHiddenFiles.Location = New System.Drawing.Point(35, 94)
         Me.checkHiddenFiles.Name = "checkHiddenFiles"
         Me.checkHiddenFiles.Size = New System.Drawing.Size(287, 17)
@@ -184,7 +186,7 @@ Partial Class Compact
         'checkForceCompression
         '
         Me.checkForceCompression.AutoSize = True
-        Me.checkForceCompression.ForeColor = System.Drawing.Color.DimGray
+        Me.checkForceCompression.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.checkForceCompression.Location = New System.Drawing.Point(35, 71)
         Me.checkForceCompression.Name = "checkForceCompression"
         Me.checkForceCompression.Size = New System.Drawing.Size(246, 17)
@@ -195,7 +197,7 @@ Partial Class Compact
         'compressX4
         '
         Me.compressX4.AutoSize = True
-        Me.compressX4.ForeColor = System.Drawing.Color.DimGray
+        Me.compressX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.compressX4.Location = New System.Drawing.Point(35, 40)
         Me.compressX4.Name = "compressX4"
         Me.compressX4.Size = New System.Drawing.Size(81, 17)
@@ -207,7 +209,7 @@ Partial Class Compact
         '
         Me.compressX8.AutoSize = True
         Me.compressX8.Checked = True
-        Me.compressX8.ForeColor = System.Drawing.Color.DimGray
+        Me.compressX8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.compressX8.Location = New System.Drawing.Point(35, 63)
         Me.compressX8.Name = "compressX8"
         Me.compressX8.Size = New System.Drawing.Size(81, 17)
@@ -219,7 +221,7 @@ Partial Class Compact
         'compressX16
         '
         Me.compressX16.AutoSize = True
-        Me.compressX16.ForeColor = System.Drawing.Color.DimGray
+        Me.compressX16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.compressX16.Location = New System.Drawing.Point(35, 86)
         Me.compressX16.Name = "compressX16"
         Me.compressX16.Size = New System.Drawing.Size(87, 17)
@@ -230,7 +232,7 @@ Partial Class Compact
         'compressLZX
         '
         Me.compressLZX.AutoSize = True
-        Me.compressLZX.ForeColor = System.Drawing.Color.DimGray
+        Me.compressLZX.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.compressLZX.Location = New System.Drawing.Point(35, 111)
         Me.compressLZX.Name = "compressLZX"
         Me.compressLZX.Size = New System.Drawing.Size(48, 17)
@@ -247,43 +249,48 @@ Partial Class Compact
         Me.Label1.Size = New System.Drawing.Size(136, 30)
         Me.Label1.TabIndex = 13
         Me.Label1.Text = "Compact GUI"
+        Me.Label1.Visible = False
         '
         'Panel1
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Panel1.Controls.Add(Me.showinfopopup)
         Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Location = New System.Drawing.Point(-3, -12)
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(491, 56)
+        Me.Panel1.Size = New System.Drawing.Size(960, 60)
         Me.Panel1.TabIndex = 14
         '
         'showinfopopup
         '
         Me.showinfopopup.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.showinfopopup.AutoSize = True
-        Me.showinfopopup.ForeColor = System.Drawing.Color.DarkGray
-        Me.showinfopopup.Location = New System.Drawing.Point(439, 33)
+        Me.showinfopopup.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.showinfopopup.Font = New System.Drawing.Font("Segoe UI", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.showinfopopup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
+        Me.showinfopopup.Location = New System.Drawing.Point(920, 14)
         Me.showinfopopup.Name = "showinfopopup"
-        Me.showinfopopup.Size = New System.Drawing.Size(25, 13)
+        Me.showinfopopup.Size = New System.Drawing.Size(27, 28)
         Me.showinfopopup.TabIndex = 14
-        Me.showinfopopup.Text = "Info"
+        Me.showinfopopup.Text = "⚙"
         '
         'dirChooser
         '
         Me.dirChooser.ActiveLinkColor = System.Drawing.Color.Red
         Me.dirChooser.AutoSize = True
         Me.dirChooser.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dirChooser.LinkColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.dirChooser.LinkColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.dirChooser.Location = New System.Drawing.Point(58, 39)
         Me.dirChooser.Name = "dirChooser"
         Me.dirChooser.Size = New System.Drawing.Size(145, 21)
         Me.dirChooser.TabIndex = 15
         Me.dirChooser.TabStop = True
         Me.dirChooser.Text = "Select Target Folder"
-        Me.dirChooser.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.dirChooser.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.dirChooser.Visible = False
         '
         'chosenDirDisplay
         '
@@ -300,12 +307,13 @@ Partial Class Compact
         Me.chosenDirDisplay.Padding = New System.Windows.Forms.Padding(5)
         Me.chosenDirDisplay.Size = New System.Drawing.Size(374, 27)
         Me.chosenDirDisplay.TabIndex = 16
+        Me.chosenDirDisplay.Visible = False
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.Label2.ForeColor = System.Drawing.Color.DimGray
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(20, 5)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(221, 21)
@@ -315,7 +323,7 @@ Partial Class Compact
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.ForeColor = System.Drawing.Color.DimGray
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(141, 42)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(50, 13)
@@ -325,7 +333,7 @@ Partial Class Compact
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.ForeColor = System.Drawing.Color.DimGray
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(141, 65)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(108, 13)
@@ -335,7 +343,7 @@ Partial Class Compact
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.ForeColor = System.Drawing.Color.DimGray
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Label5.Location = New System.Drawing.Point(141, 90)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(101, 13)
@@ -345,7 +353,7 @@ Partial Class Compact
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.ForeColor = System.Drawing.Color.DimGray
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Label6.Location = New System.Drawing.Point(141, 113)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(85, 13)
@@ -362,12 +370,13 @@ Partial Class Compact
         Me.Label7.Size = New System.Drawing.Size(25, 18)
         Me.Label7.TabIndex = 20
         Me.Label7.Text = "→ "
+        Me.Label7.Visible = False
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.Label8.ForeColor = System.Drawing.Color.DimGray
+        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label8.Location = New System.Drawing.Point(20, 11)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(207, 21)
@@ -394,6 +403,7 @@ Partial Class Compact
         '
         Me.progresspercent.BackColor = System.Drawing.Color.Transparent
         Me.progresspercent.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.progresspercent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.progresspercent.Location = New System.Drawing.Point(356, 39)
         Me.progresspercent.Name = "progresspercent"
         Me.progresspercent.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -405,17 +415,17 @@ Partial Class Compact
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.Label10.Location = New System.Drawing.Point(10, 24)
+        Me.Label10.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.Label10.Location = New System.Drawing.Point(24, 24)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(171, 25)
+        Me.Label10.Size = New System.Drawing.Size(237, 25)
         Me.Label10.TabIndex = 23
-        Me.Label10.Text = "Testing Grounds"
+        Me.Label10.Text = "🗄  Compression Database"
         '
         'compactprogressbar
         '
-        Me.compactprogressbar.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.compactprogressbar.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.compactprogressbar.Location = New System.Drawing.Point(59, 70)
         Me.compactprogressbar.MaximumSize = New System.Drawing.Size(374, 27)
         Me.compactprogressbar.Name = "compactprogressbar"
@@ -427,7 +437,7 @@ Partial Class Compact
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.ForeColor = System.Drawing.Color.DimGray
+        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Label9.Location = New System.Drawing.Point(0, 120)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(68, 13)
@@ -437,7 +447,7 @@ Partial Class Compact
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.ForeColor = System.Drawing.Color.DimGray
+        Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Label11.Location = New System.Drawing.Point(0, 178)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(91, 13)
@@ -458,7 +468,7 @@ Partial Class Compact
         '
         Me.origSizeLabel.AutoSize = True
         Me.origSizeLabel.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.origSizeLabel.ForeColor = System.Drawing.Color.White
+        Me.origSizeLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.origSizeLabel.Location = New System.Drawing.Point(1, 4)
         Me.origSizeLabel.Name = "origSizeLabel"
         Me.origSizeLabel.Size = New System.Drawing.Size(64, 21)
@@ -469,7 +479,7 @@ Partial Class Compact
         '
         Me.compressedSizeLabel.AutoSize = True
         Me.compressedSizeLabel.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.compressedSizeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.compressedSizeLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.compressedSizeLabel.Location = New System.Drawing.Point(1, 4)
         Me.compressedSizeLabel.Name = "compressedSizeLabel"
         Me.compressedSizeLabel.Size = New System.Drawing.Size(64, 21)
@@ -480,6 +490,7 @@ Partial Class Compact
         '
         Me.compRatioLabel.AutoSize = True
         Me.compRatioLabel.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.compRatioLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.compRatioLabel.Location = New System.Drawing.Point(28, 178)
         Me.compRatioLabel.Name = "compRatioLabel"
         Me.compRatioLabel.Size = New System.Drawing.Size(85, 21)
@@ -491,7 +502,7 @@ Partial Class Compact
         '
         Me.spaceSavedLabel.AutoSize = True
         Me.spaceSavedLabel.Font = New System.Drawing.Font("Segoe UI", 16.0!)
-        Me.spaceSavedLabel.ForeColor = System.Drawing.Color.DimGray
+        Me.spaceSavedLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.spaceSavedLabel.Location = New System.Drawing.Point(-4, 10)
         Me.spaceSavedLabel.Name = "spaceSavedLabel"
         Me.spaceSavedLabel.Size = New System.Drawing.Size(147, 30)
@@ -506,11 +517,14 @@ Partial Class Compact
         Me.testcompactargs.TabIndex = 28
         Me.testcompactargs.Text = "Test CompactArgs"
         Me.testcompactargs.UseVisualStyleBackColor = True
+        Me.testcompactargs.Visible = False
         '
         'buttonRevert
         '
-        Me.buttonRevert.BackColor = System.Drawing.Color.Gainsboro
-        Me.buttonRevert.ForeColor = System.Drawing.Color.Black
+        Me.buttonRevert.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.buttonRevert.FlatAppearance.BorderSize = 0
+        Me.buttonRevert.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.buttonRevert.ForeColor = System.Drawing.Color.White
         Me.buttonRevert.Location = New System.Drawing.Point(3, 3)
         Me.buttonRevert.Name = "buttonRevert"
         Me.buttonRevert.Size = New System.Drawing.Size(375, 39)
@@ -540,39 +554,42 @@ Partial Class Compact
         Me.TabControl1.Controls.Add(Me.InputPage)
         Me.TabControl1.Controls.Add(Me.ProgressPage)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Location = New System.Drawing.Point(-5, 1)
-        Me.TabControl1.MinimumSize = New System.Drawing.Size(503, 624)
+        Me.TabControl1.Location = New System.Drawing.Point(200, 60)
+        Me.TabControl1.MinimumSize = New System.Drawing.Size(760, 700)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(503, 634)
+        Me.TabControl1.Size = New System.Drawing.Size(760, 700)
         Me.TabControl1.TabIndex = 30
         '
         'InputPage
         '
         Me.InputPage.BackColor = System.Drawing.Color.White
+        Me.InputPage.Controls.Add(Me.buttonCompress)
         Me.InputPage.Controls.Add(Me.buttonQueryCompact)
         Me.InputPage.Controls.Add(Me.FlowLayoutPanel1)
         Me.InputPage.Controls.Add(Me.dirChooser)
         Me.InputPage.Controls.Add(Me.seecompest)
         Me.InputPage.Controls.Add(Me.chosenDirDisplay)
         Me.InputPage.Controls.Add(Me.Label7)
-        Me.InputPage.Location = New System.Drawing.Point(4, 22)
+        Me.InputPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+        Me.InputPage.Location = New System.Drawing.Point(4, 4)
         Me.InputPage.Name = "InputPage"
         Me.InputPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.InputPage.Size = New System.Drawing.Size(495, 608)
+        Me.InputPage.Size = New System.Drawing.Size(752, 692)
         Me.InputPage.TabIndex = 0
-        Me.InputPage.Text = "InputPage"
+        Me.InputPage.Text = "Home"
         '
         'buttonQueryCompact
         '
-        Me.buttonQueryCompact.BackColor = System.Drawing.Color.Gainsboro
-        Me.buttonQueryCompact.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue
-        Me.buttonQueryCompact.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.buttonQueryCompact.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.buttonQueryCompact.ForeColor = System.Drawing.Color.DarkGray
-        Me.buttonQueryCompact.Location = New System.Drawing.Point(289, 105)
+        Me.buttonQueryCompact.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(58, Byte), Integer))
+        Me.buttonQueryCompact.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.buttonQueryCompact.FlatAppearance.BorderSize = 1
+        Me.buttonQueryCompact.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.buttonQueryCompact.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.buttonQueryCompact.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.buttonQueryCompact.Location = New System.Drawing.Point(376, 580)
         Me.buttonQueryCompact.Name = "buttonQueryCompact"
-        Me.buttonQueryCompact.Size = New System.Drawing.Size(144, 27)
+        Me.buttonQueryCompact.Size = New System.Drawing.Size(170, 50)
         Me.buttonQueryCompact.TabIndex = 23
         Me.buttonQueryCompact.Text = "Analyse Folder"
         Me.buttonQueryCompact.UseVisualStyleBackColor = False
@@ -586,11 +603,10 @@ Partial Class Compact
         Me.FlowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.FlowLayoutPanel1.Controls.Add(Me.Panel4)
         Me.FlowLayoutPanel1.Controls.Add(Me.Panel3)
-        Me.FlowLayoutPanel1.Controls.Add(Me.buttonCompress)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(35, 160)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(30, 400)
         Me.FlowLayoutPanel1.MaximumSize = New System.Drawing.Size(700, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(423, 359)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(700, 165)
         Me.FlowLayoutPanel1.TabIndex = 22
         '
         'Panel4
@@ -604,6 +620,7 @@ Partial Class Compact
         Me.Panel4.Controls.Add(Me.compressLZX)
         Me.Panel4.Controls.Add(Me.compressX8)
         Me.Panel4.Controls.Add(Me.compressX16)
+        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
         Me.Panel4.Location = New System.Drawing.Point(3, 3)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(262, 137)
@@ -618,6 +635,7 @@ Partial Class Compact
         Me.Panel3.Controls.Add(Me.Label14)
         Me.Panel3.Controls.Add(Me.checkHiddenFiles)
         Me.Panel3.Controls.Add(Me.checkRecursiveScan)
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
         Me.Panel3.Location = New System.Drawing.Point(3, 146)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(417, 150)
@@ -625,11 +643,11 @@ Partial Class Compact
         '
         'comboChooseShutdown
         '
-        Me.comboChooseShutdown.BackColor = System.Drawing.Color.White
+        Me.comboChooseShutdown.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.comboChooseShutdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboChooseShutdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.comboChooseShutdown.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.comboChooseShutdown.ForeColor = System.Drawing.Color.DimGray
+        Me.comboChooseShutdown.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.comboChooseShutdown.FormattingEnabled = True
         Me.comboChooseShutdown.Items.AddRange(New Object() {"Shutdown", "Restart", "Sleep"})
         Me.comboChooseShutdown.Location = New System.Drawing.Point(50, 121)
@@ -641,6 +659,7 @@ Partial Class Compact
         'checkShutdownOnCompletion
         '
         Me.checkShutdownOnCompletion.AutoSize = True
+        Me.checkShutdownOnCompletion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.checkShutdownOnCompletion.Location = New System.Drawing.Point(35, 124)
         Me.checkShutdownOnCompletion.Name = "checkShutdownOnCompletion"
         Me.checkShutdownOnCompletion.Size = New System.Drawing.Size(157, 17)
@@ -652,7 +671,7 @@ Partial Class Compact
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.Label14.Location = New System.Drawing.Point(278, 69)
         Me.Label14.Margin = New System.Windows.Forms.Padding(0, 1, 0, 0)
         Me.Label14.Name = "Label14"
@@ -664,36 +683,37 @@ Partial Class Compact
         'seecompest
         '
         Me.seecompest.AutoSize = True
-        Me.seecompest.Font = New System.Drawing.Font("Segoe UI Symbol", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.seecompest.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
-        Me.seecompest.Location = New System.Drawing.Point(59, 112)
+        Me.seecompest.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.seecompest.Font = New System.Drawing.Font("Segoe UI Symbol", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.seecompest.ForeColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.seecompest.Location = New System.Drawing.Point(30, 84)
         Me.seecompest.Name = "seecompest"
-        Me.seecompest.Size = New System.Drawing.Size(156, 13)
+        Me.seecompest.Size = New System.Drawing.Size(174, 15)
         Me.seecompest.TabIndex = 21
         Me.seecompest.Text = "❯ See Compression Estimate  "
         Me.seecompest.Visible = False
         '
         'ProgressPage
         '
-        Me.ProgressPage.BackColor = System.Drawing.Color.White
+        Me.ProgressPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
         Me.ProgressPage.Controls.Add(Me.returnArrow)
         Me.ProgressPage.Controls.Add(Me.TableLayoutPanel2)
         Me.ProgressPage.Controls.Add(Me.progressPageLabel)
         Me.ProgressPage.Controls.Add(Me.compactprogressbar)
         Me.ProgressPage.Controls.Add(Me.progresspercent)
         Me.ProgressPage.Controls.Add(Me.cancelOperationButton)
-        Me.ProgressPage.Location = New System.Drawing.Point(4, 22)
+        Me.ProgressPage.Location = New System.Drawing.Point(4, 4)
         Me.ProgressPage.Name = "ProgressPage"
         Me.ProgressPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.ProgressPage.Size = New System.Drawing.Size(495, 608)
+        Me.ProgressPage.Size = New System.Drawing.Size(752, 692)
         Me.ProgressPage.TabIndex = 1
-        Me.ProgressPage.Text = "ProgressPage"
+        Me.ProgressPage.Text = "Watcher"
         '
         'returnArrow
         '
         Me.returnArrow.AutoSize = True
         Me.returnArrow.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.returnArrow.ForeColor = System.Drawing.Color.SteelBlue
+        Me.returnArrow.ForeColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.returnArrow.Location = New System.Drawing.Point(32, 42)
         Me.returnArrow.Name = "returnArrow"
         Me.returnArrow.Size = New System.Drawing.Size(25, 18)
@@ -728,6 +748,7 @@ Partial Class Compact
         Me.Panel2.Controls.Add(Me.saveconlog)
         Me.Panel2.Controls.Add(Me.checkShowConOut)
         Me.Panel2.Controls.Add(Me.conOut)
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(58, Byte), Integer))
         Me.Panel2.Location = New System.Drawing.Point(3, 285)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(377, 196)
@@ -736,8 +757,10 @@ Partial Class Compact
         'saveconlog
         '
         Me.saveconlog.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.saveconlog.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.saveconlog.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.saveconlog.FlatAppearance.BorderSize = 0
         Me.saveconlog.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.saveconlog.ForeColor = System.Drawing.Color.White
         Me.saveconlog.Location = New System.Drawing.Point(299, 162)
         Me.saveconlog.Name = "saveconlog"
         Me.saveconlog.Size = New System.Drawing.Size(75, 23)
@@ -749,7 +772,7 @@ Partial Class Compact
         'checkShowConOut
         '
         Me.checkShowConOut.AutoSize = True
-        Me.checkShowConOut.ForeColor = System.Drawing.Color.DimGray
+        Me.checkShowConOut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.checkShowConOut.Location = New System.Drawing.Point(1, 3)
         Me.checkShowConOut.Name = "checkShowConOut"
         Me.checkShowConOut.Size = New System.Drawing.Size(139, 17)
@@ -762,9 +785,9 @@ Partial Class Compact
         Me.conOut.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.conOut.BackColor = System.Drawing.Color.White
+        Me.conOut.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.conOut.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.conOut.ForeColor = System.Drawing.Color.DimGray
+        Me.conOut.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.conOut.FormattingEnabled = True
         Me.conOut.Location = New System.Drawing.Point(0, 26)
         Me.conOut.Name = "conOut"
@@ -782,6 +805,7 @@ Partial Class Compact
         Me.CompResultsPanel.Controls.Add(Me.Label9)
         Me.CompResultsPanel.Controls.Add(Me.Label11)
         Me.CompResultsPanel.Controls.Add(Me.spaceSavedLabel)
+        Me.CompResultsPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(58, Byte), Integer))
         Me.CompResultsPanel.Location = New System.Drawing.Point(3, 48)
         Me.CompResultsPanel.Name = "CompResultsPanel"
         Me.CompResultsPanel.Size = New System.Drawing.Size(375, 231)
@@ -805,7 +829,7 @@ Partial Class Compact
         '
         Me.dirChosenLabel.AutoSize = True
         Me.dirChosenLabel.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dirChosenLabel.ForeColor = System.Drawing.Color.DarkGray
+        Me.dirChosenLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.dirChosenLabel.Location = New System.Drawing.Point(2, 79)
         Me.dirChosenLabel.Name = "dirChosenLabel"
         Me.dirChosenLabel.Size = New System.Drawing.Size(87, 15)
@@ -834,7 +858,7 @@ Partial Class Compact
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer))
+        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.Label13.Location = New System.Drawing.Point(150, 1)
         Me.Label13.Margin = New System.Windows.Forms.Padding(0, 1, 0, 0)
         Me.Label13.Name = "Label13"
@@ -847,7 +871,7 @@ Partial Class Compact
         '
         Me.labelFilesCompressed.AutoSize = True
         Me.labelFilesCompressed.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelFilesCompressed.ForeColor = System.Drawing.Color.DimGray
+        Me.labelFilesCompressed.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.labelFilesCompressed.Location = New System.Drawing.Point(0, 0)
         Me.labelFilesCompressed.Margin = New System.Windows.Forms.Padding(0)
         Me.labelFilesCompressed.MaximumSize = New System.Drawing.Size(0, 20)
@@ -879,7 +903,7 @@ Partial Class Compact
         '
         Me.progressPageLabel.AutoSize = True
         Me.progressPageLabel.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.progressPageLabel.ForeColor = System.Drawing.Color.DimGray
+        Me.progressPageLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.progressPageLabel.Location = New System.Drawing.Point(58, 39)
         Me.progressPageLabel.Name = "progressPageLabel"
         Me.progressPageLabel.Size = New System.Drawing.Size(188, 21)
@@ -897,13 +921,14 @@ Partial Class Compact
         Me.TabPage3.Controls.Add(Me.Button1)
         Me.TabPage3.Controls.Add(Me.Label12)
         Me.TabPage3.Controls.Add(Me.TextBox1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(59, Byte), Integer))
+        Me.TabPage3.Location = New System.Drawing.Point(4, 4)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(495, 608)
+        Me.TabPage3.Size = New System.Drawing.Size(752, 692)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "TabPage3"
-        Me.TabPage3.UseVisualStyleBackColor = True
+        Me.TabPage3.Text = "Compression DB"
+        Me.TabPage3.UseVisualStyleBackColor = False
         '
         'testFileArgs
         '
@@ -913,6 +938,7 @@ Partial Class Compact
         Me.testFileArgs.TabIndex = 29
         Me.testFileArgs.Text = "Test FileArgs"
         Me.testFileArgs.UseVisualStyleBackColor = True
+        Me.testFileArgs.Visible = False
         '
         'ToolTipFilesCompressed
         '
@@ -929,15 +955,16 @@ Partial Class Compact
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(474, 621)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(960, 760)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.TabControl1)
         Me.DoubleBuffered = True
-        Me.ForeColor = System.Drawing.Color.DimGray
+        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(490, 660)
+        Me.MinimumSize = New System.Drawing.Size(980, 800)
         Me.Name = "Compact"
+        Me.Text = "CompactGUI"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)

@@ -47,7 +47,7 @@ Partial Class Info
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(29, 19)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(130, 21)
@@ -58,7 +58,7 @@ Partial Class Info
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(39, 50)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(87, 17)
@@ -70,10 +70,10 @@ Partial Class Info
         Me.RichTextBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RichTextBox1.BackColor = System.Drawing.Color.White
+        Me.RichTextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RichTextBox1.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.RichTextBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(203, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(225, Byte), Integer))
         Me.RichTextBox1.Location = New System.Drawing.Point(42, 82)
         Me.RichTextBox1.Margin = New System.Windows.Forms.Padding(0)
         Me.RichTextBox1.Name = "RichTextBox1"
@@ -86,7 +86,7 @@ Partial Class Info
         '
         Me.semVersion.AutoSize = True
         Me.semVersion.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.semVersion.ForeColor = System.Drawing.Color.DarkGray
+        Me.semVersion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.semVersion.Location = New System.Drawing.Point(3, 0)
         Me.semVersion.Name = "semVersion"
         Me.semVersion.Size = New System.Drawing.Size(57, 21)
@@ -97,7 +97,7 @@ Partial Class Info
         '
         Me.LinkLabel1.AutoSize = True
         Me.LinkLabel1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkLabel1.LinkColor = System.Drawing.SystemColors.MenuHighlight
+        Me.LinkLabel1.LinkColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.LinkLabel1.Location = New System.Drawing.Point(66, 5)
         Me.LinkLabel1.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
         Me.LinkLabel1.Name = "LinkLabel1"
@@ -128,8 +128,8 @@ Partial Class Info
         Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(58, Byte), Integer))
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Panel1.Controls.Add(Me.RichTextBox1)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
@@ -142,7 +142,8 @@ Partial Class Info
         '
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(58, Byte), Integer))
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Panel2.Controls.Add(Me.checkEnableRCMenu)
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Location = New System.Drawing.Point(-4, 109)
@@ -153,7 +154,7 @@ Partial Class Info
         'checkEnableRCMenu
         '
         Me.checkEnableRCMenu.AutoSize = True
-        Me.checkEnableRCMenu.ForeColor = System.Drawing.Color.Black
+        Me.checkEnableRCMenu.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.checkEnableRCMenu.Location = New System.Drawing.Point(43, 41)
         Me.checkEnableRCMenu.Name = "checkEnableRCMenu"
         Me.checkEnableRCMenu.Size = New System.Drawing.Size(249, 17)
@@ -165,7 +166,7 @@ Partial Class Info
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(29, 12)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(110, 21)
@@ -176,7 +177,7 @@ Partial Class Info
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 16.0!)
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(16, 13)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(136, 30)
@@ -185,6 +186,7 @@ Partial Class Info
         '
         'Panel3
         '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(58, Byte), Integer))
         Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.LinkLabel2)
         Me.Panel3.Location = New System.Drawing.Point(-4, 59)
@@ -195,6 +197,7 @@ Partial Class Info
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(148, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.Label5.Location = New System.Drawing.Point(40, 13)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(185, 13)
@@ -205,7 +208,7 @@ Partial Class Info
         '
         Me.LinkLabel2.AutoSize = True
         Me.LinkLabel2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkLabel2.LinkColor = System.Drawing.SystemColors.MenuHighlight
+        Me.LinkLabel2.LinkColor = System.Drawing.Color.FromArgb(CType(CType(167, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.LinkLabel2.Location = New System.Drawing.Point(222, 13)
         Me.LinkLabel2.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
         Me.LinkLabel2.Name = "LinkLabel2"
@@ -218,7 +221,7 @@ Partial Class Info
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.White
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(23, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(589, 371)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Label4)
