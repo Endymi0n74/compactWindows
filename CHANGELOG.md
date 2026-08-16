@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.1.0 (2026-08-17)
+
+### UI redesign
+
+- Dark slate theme across the whole app: main window, progress page, console and dialogs (wiki estimate popup, shutdown dialog, About).
+- New top bar with an **Admin** pill (restarts elevated), **Home / Watcher / Compression DB** navigation tabs and a settings gear.
+- New left sidebar with an **Add Folder to Queue** button and the folder queue (click a queued folder to re-scan it).
+- The Home page now shows the folder header, live stats (uncompressed size, contained files, compression status), a **Compression Summary** with before/after bars, and metric cards (**Space Saved**, **Files Compressed**, **Compression Mode**).
+- The Watcher tab hosts the progress view and the detailed console output; the old "Testing Grounds" tab was repurposed into the Compression Database page.
+
+### Performance
+
+- The fast file-count pass now runs **in parallel** with the size walk, so the determinate progress bar appears almost immediately without waiting for a sequential counting phase.
+
 ## v1.0.0 (2026-08-16)
 
 Relaunch of the project as **compactWindows**, a continuation of CompactGUI.
