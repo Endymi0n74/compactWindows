@@ -1,7 +1,7 @@
 ﻿Public Class Info
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked, LinkLabel2.LinkClicked
-        If sender Is LinkLabel1 Then Process.Start("https://github.com/ImminentFate/CompactGUI/releases")
-        If sender Is LinkLabel2 Then Process.Start("https://github.com/ImminentFate/CompactGUI")
+        If sender Is LinkLabel1 Then Process.Start("https://github.com/Endymi0n74/compactWindows/releases")
+        If sender Is LinkLabel2 Then Process.Start("https://github.com/Endymi0n74/compactWindows")
     End Sub
 
     Private Sub checkEnableRCMenu_CheckedChanged(sender As Object, e As EventArgs) Handles checkEnableRCMenu.Click

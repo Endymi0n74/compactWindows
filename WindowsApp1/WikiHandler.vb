@@ -1,85 +1,163 @@
 ﻿Imports System.IO
-Imports System.Net
+Imports System.Net.Http
 Imports System.Text
 Imports System.Text.RegularExpressions
 
 Public Class WikiHandler
+    ' Cache of the wiki database, downloaded once per session.
     Shared InputFromGitHub() As String
 
-    Shared workingname As String = "testdir"
+    Private Const WikiDbUrl As String = "https://raw.githubusercontent.com/Endymi0n74/compactWindows/CompactGUI1/Wiki/WikiDB_Games"
+
+    Private Shared ReadOnly WikiHttpClient As New HttpClient With {.Timeout = TimeSpan.FromSeconds(15)}
 
 
-    'Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-    '    WikiParser()
+    'Parses the locally selected folder name and matches it against the wiki database
+    'to produce the compression estimate popup. The uncompressed folder size is passed
+    'in so the tree is not enumerated a second time, and the download is asynchronous
+    'so the UI stays responsive.
+    Public Shared Async Sub localFolderParse(wdString As String, DIwDString As DirectoryInfo, rawSizeBytes As Long)
 
-    'End Sub
+        Dim wnpatch As String = Regex.Replace(DIwDString.Name.ToString, "[^\p{L}a-zA-Z0-90]", "").ToLower
+        Dim workingname As String
 
-    Private Shared Sub WikiParser()
-        Console.WriteLine(workingname)
+        If wnpatch.Contains("callofduty") Then
+            Dim interm = wnpatch.Replace("callofduty", "cod")
+            If interm.Trim().EndsWith("modernwarfare") Then
+                workingname = "cod4"
+            Else
+                workingname = interm
+            End If
+        ElseIf wnpatch.Contains("gameoftheyear") Then
+            workingname = wnpatch.Replace("gameoftheyear", "goty")
+        ElseIf wnpatch.Contains("shadowofmordor") Then
+            workingname = "middleearthshadowofmordor"
+        ElseIf wnpatch.Contains("age2hd") Then
+            workingname = "ageofempiresiihd"
+        Else
+            workingname = wnpatch
+        End If
 
-        Dim stringSeparators() As String = {vbCrLf}
-        Dim Source As String
+        Dim folderSizeraw As String = GetOutputSize(rawSizeBytes, True)
+        Dim folderSize As Decimal
+        Dim suffix As String
+        Try
+            folderSize = Math.Round(Decimal.Parse(folderSizeraw.Split(" ")(0)), 2)
+            suffix = folderSizeraw.Split(" ")(1)
+        Catch ex As Exception
+            folderSize = 0
+            suffix = ""
+        End Try
 
-        Dim gameName As New List(Of String)
+        Try
+            Form2.wkPreSizeVal.Text = Math.Round(folderSize, 1)
+            Form2.wkPreSizeUnit.Text = suffix
+            Form2.wkPreSizeUnit.Location = New Point(Form2.wkPreSizeVal.Location.X + Form2.wkPreSizeVal.Size.Width - 10, Form2.wkPreSizeVal.Location.Y + 10)
+        Catch ex As Exception
+            Form2.wkPreSizeVal.Text = "?"
+            Form2.wkPreSizeUnit.Text = ""
+            Form2.wkPreSizeUnit.Location = New Point(Form2.wkPreSizeVal.Location.X + Form2.wkPreSizeVal.Size.Width, Form2.wkPreSizeVal.Location.Y)
+        End Try
 
-        If InputFromGitHub Is Nothing Then
-            Console.WriteLine("Getting List")
-            Dim wc As New WebClient
-            wc.Encoding = Encoding.UTF8
+        Try
+            Await WikiParserAsync(workingname, folderSize, suffix)
+        Catch ex As Exception
+            ShowNoInternetError()
+        End Try
+
+    End Sub
+
+
+    Private Shared Async Function WikiParserAsync(workingname As String, folderSize As Decimal, suffix As String) As Task
+        Try
+            If InputFromGitHub Is Nothing Then
+                'Download and cache the wiki database (async so the UI is not blocked).
+                Try
+                    Dim bytes As Byte() = Await WikiHttpClient.GetByteArrayAsync(WikiDbUrl)
+                    InputFromGitHub = Encoding.UTF8.GetString(bytes).TrimEnd().Split(vbLf)
+                Catch ex As Exception
+                    ShowNoInternetError()
+                    Return
+                End Try
+            End If
+
+            Dim gameName As New List(Of String)
+
+            For Each s As String In InputFromGitHub
+                Try
+                    gameName.Add(s.Split("|")(2))
+                Catch ex As Exception
+                End Try
+            Next
+
+            Dim strippedgameName As New List(Of String)
+
+            For Each s In gameName
+                Dim n = Regex.Replace(s, "[^\p{L}a-zA-Z0-90]", "")
+                strippedgameName.Add(n.ToLower)
+            Next
+
+            Dim i = 0
+            Dim gcount As New List(Of Integer)
+            For Each a In strippedgameName
+                If a.ToString.StartsWith(workingname) Then
+                    gcount.Add(i)
+                End If
+                i += 1
+            Next
+
+            BuildTableHeader()
+
+            Dim ratioavg As Decimal = 1
+            For Each n In gcount
+                If InputFromGitHub(n).Split("|").Length < 7 Then
+                    Continue For
+                End If
+
+                FillTable(n)
+
+                Try
+                    ratioavg += Decimal.Parse(InputFromGitHub(n).Split("|")(6))
+                Catch ex As Exception
+                End Try
+
+                If InputFromGitHub(n).Split("|")(7).Contains("*") Then
+                    Form2.lblCompactIssues.Visible = True
+                    Form2.lblCompactIssues.Text = "! Game has issues"
+                Else
+                    Form2.lblCompactIssues.Visible = False
+                End If
+            Next
+
             Try
-                Source = wc.DownloadString("https://raw.githubusercontent.com/ImminentFate/CompactGUI/master/Wiki/WikiDB_Games")
-                InputFromGitHub = Source.TrimEnd().Split(vbLf)
-            Catch ex As WebException
-                Form2.lblCompactIssues.Text = "! No Internet Connection"
-                Form2.lblCompactIssues.Visible = True
+                ratioavg = (ratioavg - 1) / gcount.Count
+
+                Form2.wkPostSizeVal.Text = Math.Round(folderSize * ratioavg, 1)
+                Form2.wkPostSizeUnit.Text = suffix
+                Form2.wkPostSizeUnit.Location = New Point(Form2.wkPostSizeVal.Location.X + Form2.wkPostSizeVal.Size.Width - 10, Form2.wkPostSizeVal.Location.Y + 10)
+                Form2.wkPostSizeUnit.Visible = True
+            Catch ex As System.DivideByZeroException
                 Form2.wkPostSizeVal.Text = "?"
                 Form2.wkPostSizeUnit.Text = ""
                 Form2.wkPostSizeUnit.Location = New Point(Form2.wkPostSizeVal.Location.X + Form2.wkPostSizeVal.Size.Width, Form2.wkPostSizeVal.Location.Y)
-            End Try
-
-        End If
-
-
-
-        For Each s As String In InputFromGitHub
-            Try
-                'ListBox1.Items.Add(s)
-                gameName.Add(s.Split("|")(2))
             Catch ex As Exception
-
+                Form2.wkPostSizeVal.Text = "?"
+                Form2.wkPostSizeUnit.Text = ""
             End Try
 
-        Next
+            Form2.GamesTable.Visible = True
 
-        Dim strippedgameName As New List(Of String)
+        Catch ex As Exception
+            ShowNoInternetError()
+        End Try
 
-        For Each s In gameName
-            Dim n = Regex.Replace(s, "[^\p{L}a-zA-Z0-90]", "")
-            'ListBox2.Items.Add(n.ToLower)
-            strippedgameName.Add(n.ToLower)
-        Next
+    End Function
 
 
-
-
-        Dim i = 0
-        Dim gcount As New List(Of Integer)
-        For Each a In strippedgameName
-            If a.ToString.StartsWith(workingname) Then
-
-                gcount.Add(i)
-            End If
-            i += 1
-        Next
-
-
-
+    Private Shared Sub BuildTableHeader()
         Form2.GamesTable.Visible = False
-
         Form2.GamesTable.Controls.Clear()
         Form2.GamesTable.RowCount = 0
-
-
 
         Dim GName As New Label
         GName.Text = "Game"
@@ -96,7 +174,6 @@ Public Class WikiHandler
         Dim GCompAlg As New Label
         GCompAlg.Text = "Algorithm"
 
-
         Form2.GamesTable.RowStyles.Add(New RowStyle(SizeType.Absolute, 35))
         Form2.GamesTable.RowCount += 1
         Form2.GamesTable.Controls.Add(GName, 0, Form2.GamesTable.RowCount - 1)
@@ -105,56 +182,25 @@ Public Class WikiHandler
         Form2.GamesTable.Controls.Add(GCompR, 3, Form2.GamesTable.RowCount - 1)
         Form2.GamesTable.Controls.Add(GCompAlg, 4, Form2.GamesTable.RowCount - 1)
 
-
         For Each WikiHeader As Label In Form2.GamesTable.Controls
             WikiHeader.Font = New Font("Segoe UI", 11, FontStyle.Bold)
-
             WikiHeader.Dock = DockStyle.Right
         Next
 
         GName.Dock = DockStyle.Left
-
-        Dim ratioavg As Decimal = 1
-        For Each n In gcount
-
-            FillTable(n)
-
-            ratioavg += Decimal.Parse(InputFromGitHub(n).Split("|")(6))
-            If InputFromGitHub(n).Split("|")(7).Contains("*") Then
-                Form2.lblCompactIssues.Visible = True
-                Form2.lblCompactIssues.Text = "! Game has issues"
-            Else
-                Form2.lblCompactIssues.Visible = False
-            End If
-
-        Next
-
-        Try
-            ratioavg = (ratioavg - 1) / gcount.Count
-
-            'Compact.seecompest.Text = "Compression Estimate: " & Math.Round(folderSize * ratioavg, 2) & " " & suffix
-            Form2.wkPostSizeVal.Text = Math.Round(folderSize * ratioavg, 1)
-            Form2.wkPostSizeUnit.Text = suffix
-            Form2.wkPostSizeUnit.Location = New Point(Form2.wkPostSizeVal.Location.X + Form2.wkPostSizeVal.Size.Width - 10, Form2.wkPostSizeVal.Location.Y + 10)
-            Form2.wkPostSizeUnit.Visible = True
-        Catch ex As System.DivideByZeroException
-            'Compact.seecompest.Text = "Compression Estimate: Unknown"
-            Form2.wkPostSizeVal.Text = "?"
-            Form2.wkPostSizeUnit.Text = ""
-            Form2.wkPostSizeUnit.Location = New Point(Form2.wkPostSizeVal.Location.X + Form2.wkPostSizeVal.Size.Width, Form2.wkPostSizeVal.Location.Y)
-        End Try
-
-
-        Form2.GamesTable.Visible = True
-
-
-
     End Sub
 
+
+    Private Shared Sub ShowNoInternetError()
+        Form2.lblCompactIssues.Text = "! No Internet Connection"
+        Form2.lblCompactIssues.Visible = True
+        Form2.wkPostSizeVal.Text = "?"
+        Form2.wkPostSizeUnit.Text = ""
+        Form2.wkPostSizeUnit.Location = New Point(Form2.wkPostSizeVal.Location.X + Form2.wkPostSizeVal.Size.Width, Form2.wkPostSizeVal.Location.Y)
+    End Sub
+
+
     Private Shared Sub FillTable(ps As Integer)
-
-
-
 
         Dim GName As New Label
         GName.Text = InputFromGitHub(ps).Split("|")(2)
@@ -188,70 +234,8 @@ Public Class WikiHandler
 
         For Each ConC As Label In Form2.GamesTable.Controls
             ConC.AutoSize = True
-
             ConC.Padding = New Padding(2, 4, 0, 0)
-
         Next
-
-
-
-    End Sub
-
-    Shared folderSize
-    Shared suffix
-
-
-
-    Public Shared Sub localFolderParse(wdString As String, DIwDString As DirectoryInfo, rawPreSize As String)
-
-
-
-        Dim wnpatch As String
-
-        wnpatch = Regex.Replace(DIwDString.Name.ToString, "[^\p{L}a-zA-Z0-90]", "").ToLower
-        If wnpatch.Contains("callofduty") Then
-            Dim interm = wnpatch.Replace("callofduty", "cod")
-            If interm.Trim().EndsWith("modernwarfare") Then
-                workingname = "cod4"
-            Else
-                workingname = interm
-            End If
-
-        ElseIf wnpatch.Contains("gameoftheyear") Then
-            Dim interm = wnpatch.Replace("gameoftheyear", "goty")
-            workingname = interm
-        ElseIf wnpatch.Contains("shadowofmordor") Then
-            workingname = "middleearthshadowofmordor"
-        ElseIf wnpatch.Contains("age2hd") Then
-            workingname = "ageofempiresiihd"
-
-        Else
-            workingname = wnpatch
-        End If
-
-        Dim folderSizeraw = GetOutputSize _
-                    (WikiDirectorySize(DIwDString, True), True)
-        folderSize = Math.Round(Decimal.Parse(folderSizeraw.Split(" ")(0)), 2)
-        suffix = folderSizeraw.Split(" ")(1)
-        Compact.preSize.Text = "Uncompressed Size: " & Math.Round(folderSize, 1) & " " & suffix
-
-        Try
-
-            Form2.wkPreSizeVal.Text = Math.Round(folderSize, 1)
-            Form2.wkPreSizeUnit.Text = suffix
-            Form2.wkPreSizeUnit.Location = New Point(Form2.wkPreSizeVal.Location.X + Form2.wkPreSizeVal.Size.Width - 10, Form2.wkPreSizeVal.Location.Y + 10)
-        Catch ex As System.DivideByZeroException
-
-            Form2.wkPreSizeVal.Text = "?"
-            Form2.wkPreSizeUnit.Text = ""
-            Form2.wkPreSizeUnit.Location = New Point(Form2.wkPreSizeVal.Location.X + Form2.wkPreSizeVal.Size.Width, Form2.wkPreSizeVal.Location.Y)
-        End Try
-
-
-
-
-        WikiParser()
-
 
     End Sub
 
@@ -268,33 +252,13 @@ Public Class WikiHandler
             Else
                 Form2.SetBounds(screenpos.X, screenpos.Y, 450, 130)
             End If
-
         Else
             Form2.SetBounds(screenpos.X, screenpos.Y, Form2.GamesTable.Width + 35, Form2.GamesTable.Height + 200)
         End If
 
         FadeTransition.FadeForm(Form2, 0, 0.96, 200)
 
-
     End Sub
-
-
-    'End Sub
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     Public Shared Function GetOutputSize(ByVal inputsize As Decimal, Optional ByVal showSizeType As Boolean = False) As String            'Function for converting from Bytes into various units
@@ -323,29 +287,5 @@ Public Class WikiHandler
         End If
 
     End Function
-
-    Private Shared Function WikiDirectorySize _
-        (ByVal dInfo As IO.DirectoryInfo, ByVal includeSubdirectories As Boolean) As Long
-
-
-        Try
-
-            Dim totalSize As Long = dInfo.EnumerateFiles().Sum(Function(file) file.Length)
-
-            If includeSubdirectories Then
-                totalSize += dInfo.EnumerateDirectories().Sum(Function(dir) WikiDirectorySize(dir, True))
-            End If
-
-            Return totalSize
-
-        Catch generatedexceptionname As UnauthorizedAccessException
-
-
-        Catch ex As Exception
-
-        End Try
-
-    End Function
-
 
 End Class
